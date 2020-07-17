@@ -3,8 +3,6 @@
 
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<title>Vérification données</title>
 	</head>
 
 
@@ -13,10 +11,10 @@
 		<?php
 
 		// Vérifier la validité (aucun champs vides) :
-		if( (!isset($_POST['nom']) OR !isset($_POST['theme']) OR !isset($_POST['groupe']) OR !isset($_POST['message'])) 
-			OR (empty($_POST['nom']) OR empty($_POST['theme']) OR empty($_POST['groupe']) OR empty($_POST['message'])))
+		if (empty($_POST['nom']) || empty($_POST['theme']) || empty($_POST['groupe']) || empty($_POST['message']))
 		{
-			echo '<p>Vous n\'avez pas rempli tous les champs.</p>';
+			// Envoi statut erreur
+			header('Location: discussion.php?envoi=False');
 		}
 
 		else
@@ -24,21 +22,18 @@
 			// Ouvrir le document CSV (écriture);
 			$file = fopen("discussion.csv","a+");
 			// Enregistrer;
-			$void_line = array('', '');
-			fputcsv($file, $void_line);
+			$void_line = array('', ''); // Les deux lignes que je souhaite améliorer ici
+			fputcsv($file, $void_line); // et ici.
 			fputcsv($file, $_POST);
 		
 			// Fermer le document CSV;
 			fclose($file);
 
 			// Message confirmation;
-			echo '<p>C\'est envoyé !</p>';
+			header('Location: discussion.php');
 		}
 
 		?>
-
-		<p><a href="discussion.php">Retour à la discussion</a></p>
-
 	</body>
 </html>
 

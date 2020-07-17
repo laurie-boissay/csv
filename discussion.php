@@ -8,81 +8,110 @@
 
 
 	<body>
+
+		<!-- Afficher le contenu d'un document CSV sous forme de discussion interactive et sécurisée. -->
+
 		<?php
-		// ___________ Créer un chat à partir d'un document CSV. _______________
-
-
-		// Ouvrir le document CSV (lecture)
+		// Ouvrir le document CSV (lecture).
 		$file = fopen("discussion.csv","r");
 
 		// Pour chaque ligne :
 		while(!feof($file))
 		{
 			// Ligne en cours.
-			$donnees = fgetcsv($file);
+			$data = fgetcsv($file);
 
-			if (isset($donnees[0]) AND isset($donnees[1]) AND isset($donnees[2]) AND isset($donnees[3]))
+			// Définir des variables aux nom précis.
+			//$message = array(
+				//'author' => $data[0],
+				//'theme' => $data[1],
+				//'group' => $data[2],
+				//'text' => $data[3],
+			//);
+
+			//echo $message['author']; 
+			// Notice: Trying to access array offset on value of type bool 
+			// in /opt/lampp/htdocs/test_t/discussion.php on line 24, 25, 26, 27
+			
+			// Vérifier les données reçues.
+			if (isset($data[0]) && isset($data[1]) && isset($data[2]) && isset($data[3]))
 			{
-				// Afficher le texte : ! htmlspecialchars() ; nl2br()
-				// Discussion créée par Auteur (gras)
-				echo '<div class="' . strip_tags($donnees[2]) . '"><p>Discussion créée par <strong>' . htmlspecialchars($donnees[0]) . '</strong><br/>';
+		?>		<!-- Selon le groupe Private ou Public la couleur du cadre change. -->
+				<div class=<?php echo '"' . strip_tags($data[2]) . '"'; ?> >
+					<p>
+						<!-- Afficher le contenu : ! htmlspecialchars() ; nl2br()
+						Discussion créée par Auteur (gras) -->
+						Discussion créée par <strong><?php echo htmlspecialchars($data[0]); ?></strong><br/>
 
-				// (Sur le thème : Thème(gras))
-				echo '(Sur le thème : <strong>' . htmlspecialchars($donnees[1]) . '</strong>)<br/>';
+						<!-- (Sur le thème : Thème(gras)) -->
+						(Sur le thème : <strong><?php echo htmlspecialchars($data[1]); ?></strong>)<br/>
 
-				// Dans le groupe Groupe
-				echo 'Dans le groupe ' . htmlspecialchars($donnees[2]) . '</p>';
+						<!-- Dans le groupe Groupe -->
+						Dans le groupe <?php echo htmlspecialchars($data[2]); ?>
+					</p>
 
-				// Texte (max 300)
-				echo '<p><em>" ' . nl2br(htmlspecialchars($donnees[3])) . ' "</em></p></div>';
+					<p>
+						<!-- Texte (max 300) -->
+						<em>" <?php echo nl2br(htmlspecialchars($data[3])); ?> "</em>
+					</p>
+				</div><!-- class="GROUP" -->
+				<?php
 			}
 		}
 		
-		// Fermer le document CSV
+		// Fermer le document CSV.
 		fclose($file);
 
+		if (isset($_GET['envoi'])) 
+		//Le message est affiché quelque soit la valeur de $_GET['envoi'].
+		{
+			?>
+			<p id=echec>
+				Un ou plusieurs champs sont vides. L'envoi a échoué.
+			</p>
+			<?php
+		}
 
-		// Ajouter un commentaire
-		echo '<div id="formulaire"><p>Ajouter un commentaire</p>';
-		?>
-		<!-- Formulaire : -->
-		<form action="post_discussion.php" method="POST">
+			?>
+		<!-- Ajouter un commentaire. -->
+		<div id="formulaire">
+			<p>
+				Ajouter un commentaire
+			</p>
+		
+			<!-- Formulaire : -->
+			<form action="post_discussion.php" method="POST">
+				<p>
+					<!-- Nom d'utilisateur (texte court) -->
+					<label>Nom d'utilisateur<input action="text" name="nom"></label>
 
-		<!-- Nom d'utilisateur (texte court) -->
-		<p>
-			<label>Nom d'utilisateur<input action="text" name="nom"></label>
+					<!-- Thème (menu déroulant) --> 
+					<select id="theme" name="theme">
+					<option value="Activité Physique">Activité Physique</option>
+					<option value="Nutrition">Nutrition</option>
+					<option value="Hygiène de vie">Hygiène de vie</option>
+					</select> 
 
-			<!-- Thème (menu déroulant) --> 
-			<select id="theme" name="theme">
-			<option value="Activité Physique">Activité Physique</option>
-			<option value="Nutrition">Nutrition</option>
-			<option value="Hygiène de vie">Hygiène de vie</option>
-			</select> 
+					<!-- Groupe (radiobutton) -->
+					<input type="radio" id="public" name="groupe" value="Public">
+					<label for="public">Public</label>
+					<input type="radio" id="private" name="groupe" value="Private">
+					<label for="private">Private</label>				
+				</p>
 
-			<!-- Groupe (radiobutton) -->
-			<input type="radio" id="public" name="groupe" value="Public">
-			<label for="public">Public</label>
-			<input type="radio" id="private" name="groupe" value="Private">
-			<label for="private">Private</label>				
-		</p>
+				<p>
+					<!-- Message (Texte long) -->
+					<label>Message<br/></label>
+					<textarea name="message" maxlength="300"></textarea>
+				</p>
 
-		<!-- Message (Texte long) -->
-		<p>
-			<label>Message<br/></label>
-			<textarea name="message" maxlength="300"></textarea>
-		</p>
+				<!-- Compteur de carractères -->
 
-		<!-- Compteur de carractères -->
-
-
-		<!-- Submit post_discussion.php (valider) -->
-		<p><input type="submit"></p>
-
-		<?php
-		echo '</div>';
-
-		?>
-
-		</form>
+				<p>
+					<!-- Submit post_discussion.php (valider) -->
+					<input type="submit">
+				</p>
+			</form>
+		</div><!-- id="formulaire" -->
 	</body>
 </html>
