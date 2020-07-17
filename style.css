@@ -1,30 +1,25 @@
-body
-{
-	width:70%;
-	margin: 70px;
+body {
+    width:70%;
+    margin: 70px;
 }
 
-#formulaire
-{
-	border-style: solid;
-	border-width:1px;
-	border-color: #DCDCDC;
+#formulaire {
+    border-style: solid;
+    border-width:1px;
+    border-color: #DCDCDC;
 }
 
-.Public
-{
-	background-color:#DCDCDC;
-	margin:auto;
+.Public {
+    background-color:#DCDCDC;
+    margin:auto;
 }
 
-.Private
-{
-	background-color:#FFCCCC;
-	margin:auto;
+.Private {
+    background-color:#FFCCCC;
+    margin:auto;
 }
 
-#echec
-{
-	background-color:#A9F5F2;
-	margin:auto;
+#echec {
+    background-color:#A9F5F2;
+    margin:auto;
 }
