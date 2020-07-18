@@ -9,17 +9,17 @@ body {
     border-color: #DCDCDC;
 }
 
-.Public {
+.public {
     background-color:#DCDCDC;
     margin:auto;
 }
 
-.Private {
+.private {
     background-color:#FFCCCC;
     margin:auto;
 }
 
-#echec {
+#fail {
     background-color:#A9F5F2;
     margin:auto;
 }
