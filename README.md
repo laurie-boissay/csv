@@ -15,7 +15,7 @@ Sur les conseils de plusieurs personnes :
 
 - Suppression des guillements simples dans le PHP pour le différencier du HTML ;
 
-- Donner des noms plus claires aux valeurs des tableaux : data[0] doit devenir message['author'] (Merci à Julp du forum OC pour sa solution et son explication);
+- Donner des noms plus claires aux valeurs des tableaux : data[0] doit devenir message['author'] (Merci à Julp du forum OC pour sa solution et son explication https://openclassrooms.com/forum/sujet/resolu-notice-trying-to-access);
 
 - AND devient && et OR devient || pour plus de lisibilité ;
 
