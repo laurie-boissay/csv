@@ -13,45 +13,43 @@
 
         
         <!-- Ouvrir le document CSV (lecture). -->
-        <?php $file = fopen('discussion.csv', 'r'); ?>
+        <?php $file = fopen('discussion.csv', 'r'); 
 
-        <!-- Pour chaque ligne : -->
-        <?php while(!feof($file)) {
-            // Ligne en cours.
-            $data = fgetcsv($file);?>
+        // Pour chaque ligne (si la ligne n'est pas vide) 
+        //fgetcsv() retourne NULL si un paramètre handle invalide est fourni 
+        //ou FALSE en cas d'autres erreurs, y compris la fin du fichier.
+         while ($data = fgetcsv($file)) { 
 
-            <!-- Définir des variables aux nom précis.-->
-            <?php //$message = array(
-                //'author' => $data[0],
-                //'theme' => $data[1],
-                //'group' => $data[2],
-                //'text' => $data[3],
-            //);
-
-            // Notice: Trying to access array offset on value of type bool 
-            // in /opt/lampp/htdocs/test_t/discussion.php on line 27, 28, 29, 30
+            // Définir des variables aux nom précis.
+            $message = array(
+                'author' => $data[0],
+                'theme' => $data[1],
+                'group' => $data[2],
+                'text' => $data[3],
+            );
             ?> 
             
             <!-- Vérifier les données reçues. -->
-            <?php if (isset($data[0]) && isset($data[1]) && isset($data[2]) && isset($data[3])) { ?>
+            <?php if (isset($message['author']) && isset($message['theme']) && isset($message['group']) && isset($message['text'])) { ?>
+            
             <!-- Selon le groupe private ou public la couleur du cadre change. -->
-                <div class=<?php echo '"' . strtolower(strip_tags($data[2])) . '"'; ?> >
+                <div class=<?php echo '"' . strtolower(strip_tags($message['group'])) . '"'; ?> >
                     <p>
                         <!-- Afficher le contenu : ! htmlspecialchars() ; nl2br()
                         Discussion créée par Auteur (strong) -->
-                        Discussion créée par <strong><?php echo nl2br(htmlspecialchars($data[0])); ?></strong><br/>
+                        Discussion créée par <strong><?php echo nl2br(htmlspecialchars($message['author'])); ?></strong><br/>
 
                         <!-- (Sur le thème : Thème(strong)) -->
-                        (Sur le thème : <strong><?php echo htmlspecialchars($data[1]); ?></strong>)<br/>
+                        (Sur le thème : <strong><?php echo nl2br(htmlspecialchars($message['theme'])); ?></strong>)<br/>
 
                         <!-- Dans le groupe Groupe -->
-                        Dans le groupe <?php echo htmlspecialchars($data[2]); ?>
+                        Dans le groupe <?php echo nl2br(htmlspecialchars($message['group'])); ?>
 
                     </p>
 
                     <p>
                         <!-- Texte (max 300) -->
-                        <em>" <?php echo nl2br(htmlspecialchars($data[3])); ?> "</em>
+                        <em>" <?php echo nl2br(htmlspecialchars($message['text'])); ?> "</em>
                     </p>
                 </div><!-- class="GROUP" -->
                 
