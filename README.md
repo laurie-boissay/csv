@@ -27,7 +27,7 @@ Sur les conseils de plusieurs personnes :
 
 - Correction du code pour validation W3C ;
 
-- Modification du code (en cours) pour correspondre aux standards PSR 0, 1 et 2 ;
+- Modification du code (en cours) pour correspondre aux standards PSR 0, 1, 2 et 3 ;
 
 - Axe d'amélioration : ajouter une option requiered pour ne pas perdre les données envoyées par l'utilisateur quand des champs sont vides.
 
