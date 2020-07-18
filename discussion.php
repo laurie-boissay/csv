@@ -13,7 +13,7 @@
 
         
         <!-- Ouvrir le document CSV (lecture). -->
-        <?php $file = fopen("discussion.csv", "r"); ?>
+        <?php $file = fopen('discussion.csv', 'r'); ?>
 
         <!-- Pour chaque ligne : -->
         <?php while(!feof($file)) {
