@@ -27,10 +27,9 @@
                 'group' => $data[2],
                 'text' => $data[3],
             );
-            ?> 
             
-            <!-- Vérifier les données reçues. -->
-            <?php if (isset($message['author']) && isset($message['theme']) && isset($message['group']) && isset($message['text'])) { ?>
+            // Vérifier les données reçues. -->
+            if (isset($message['author']) && isset($message['theme']) && isset($message['group']) && isset($message['text'])) { ?>
             
             <!-- Selon le groupe private ou public la couleur du cadre change. -->
                 <div class=<?php echo '"' . strtolower(strip_tags($message['group'])) . '"'; ?> >
@@ -79,7 +78,7 @@
             <form action="post_discussion.php" method="POST">
                 <p>
                     <!-- Nom d'utilisateur (texte court) -->
-                    <label>Nom d'utilisateur<input type="text" name="author"></label>
+                    <label>Nom d'utilisateur<input type="text" name="author" required></label>
 
                     <!-- Thème (menu déroulant) --> 
                     <select id="theme" name="theme">
@@ -89,16 +88,16 @@
                     </select> 
 
                     <!-- Groupe (radiobutton) -->
-                    <input type="radio" id="public" name="group" value="Public">
+                    <input type="radio" id="public" name="group" value="Public" required>
                     <label for="public">Public</label>
-                    <input type="radio" id="private" name="group" value="Private">
+                    <input type="radio" id="private" name="group" value="Private" required>
                     <label for="private">Private</label>
                 </p>
 
                 <p>
                     <!-- Message (Texte long) -->
                     <label>Message<br/></label>
-                    <textarea name="text" maxlength="300"></textarea>
+                    <textarea name="text" maxlength="300" required></textarea>
                 </p>
 
                 <!-- Compteur de carractères -->
