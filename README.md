@@ -29,7 +29,7 @@ Sur les conseils de plusieurs personnes :
 
 - Modification du code (en cours) pour correspondre aux standards PSR 0, 1 et 2 ;
 
-- Axe d'amélioration : ajouter une option requiered pour ne pas perdre les données envoyées par l'utilisateur quand les champs sont vides.
+- Axe d'amélioration : ajouter une option requiered pour ne pas perdre les données envoyées par l'utilisateur quand des champs sont vides.
 
        
    
