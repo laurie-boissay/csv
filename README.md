@@ -31,6 +31,6 @@ Sur les conseils de plusieurs personnes :
 
 - Ajout de l'option requiered dans les formulaires pour ne pas perdre les données envoyées par l'utilisateur quand des champs sont vides. (Je laisse les options de vérification sur la page post_discussion.php pour plus de sécurité.)
 
-       
-   
-  
+19/07/20 :
+
+- Recherche sur le compteur de caractères restants : langage JS (en attente).
