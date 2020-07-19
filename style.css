@@ -23,3 +23,14 @@ body {
     background-color:#A9F5F2;
     margin:auto;
 }
+
+#remainingChar {
+    display: block;
+    margin-right: 10px;
+    color:#585858;
+    text-align: right;
+}
+
+#textArea {
+    margin-left: 10px;
+}

@@ -8,9 +8,7 @@
 
 
     <body>
-
         <!-- Afficher le contenu d'un document CSV sous forme de discussion interactive et sécurisée. -->
-
         
         <!-- Ouvrir le document CSV (lecture). -->
         <?php $file = fopen('discussion.csv', 'r'); 
@@ -43,7 +41,6 @@
 
                         <!-- Dans le groupe Groupe -->
                         Dans le groupe <?php echo nl2br(htmlspecialchars($message['group'])); ?>
-
                     </p>
 
                     <p>
@@ -81,6 +78,7 @@
                     <label>Nom d'utilisateur<input type="text" name="author" required></label>
 
                     <!-- Thème (menu déroulant) --> 
+                    Thème
                     <select id="theme" name="theme">
                     <option value="Activité Physique">Activité Physique</option>
                     <option value="Nutrition">Nutrition</option>
@@ -94,19 +92,32 @@
                     <label for="private">Private</label>
                 </p>
 
-                <p>
+                <p id=textArea>
                     <!-- Message (Texte long) -->
                     <label>Message<br/></label>
-                    <textarea name="text" maxlength="300" required></textarea>
+                    <!-- attention risque de déborder -->
+                    <textarea name="text" maxlength="300" rows="2" cols="180" id="text"  required></textarea><!-- onkeyup="countChars()" -->
                 </p>
-
-                <!-- Compteur de carractères -->
 
                 <p>
                     <!-- Submit post_discussion.php (valider) -->
-                    <input type="submit">
+                    <button type="submit">Valider</button>
+
+                    <!-- Compteur de carractères 
+                    Fonction qui compte le nombre de caractères restants.
+                    https://www.w3schools.com/tags/ev_onkeyup.asp
+                    To do : apprendre JS.
+                    
+                    function countChars() {
+                        associer id="text"
+                        300 - nbrCharTyped = totalRemainingChar
+                        associer id="remainingChar" 
+                        écrire totalRemainingChar -->
+                        
+                   <!-- Afficher totalRemainingChar -->
+                    <span id="remainingChar"> caractères restants</span>
                 </p>
             </form>
-        </div><!-- id="formulaire" -->
+        </div><!-- id="formulaire" -->  
     </body>
 </html>

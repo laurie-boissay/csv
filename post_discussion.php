@@ -30,7 +30,6 @@
             // Message confirmation;
             header('Location: discussion.php');
         }
-
         ?>
     </body>
 </html>
