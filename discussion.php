@@ -16,7 +16,7 @@
         // Pour chaque ligne (si la ligne n'est pas vide) 
         //fgetcsv() retourne NULL si un paramètre handle invalide est fourni 
         //ou FALSE en cas d'autres erreurs, y compris la fin du fichier.
-         while ($data = fgetcsv($file)) { 
+        while ($data = fgetcsv($file)):
 
             // Définir des variables aux nom précis.
             $message = array(
@@ -33,14 +33,15 @@
                 <div class=<?php echo '"' . strtolower(strip_tags($message['group'])) . '"'; ?> >
                     <p>
                         <!-- Afficher le contenu : ! htmlspecialchars() ; nl2br()
-                        Discussion créée par Auteur (strong) -->
+                        Discussion créée par AUTEUR (strong) -->
                         Discussion créée par <strong><?php echo nl2br(htmlspecialchars($message['author'])); ?></strong><br/>
 
-                        <!-- (Sur le thème : Thème(strong)) -->
+                        <!-- (Sur le thème : THEME(strong)) -->
                         (Sur le thème : <strong><?php echo nl2br(htmlspecialchars($message['theme'])); ?></strong>)<br/>
 
-                        <!-- Dans le groupe Groupe -->
+                        <!-- Dans le groupe GROUP -->
                         Dans le groupe <?php echo nl2br(htmlspecialchars($message['group'])); ?>
+                        
                     </p>
 
                     <p>
@@ -50,7 +51,7 @@
                 </div><!-- class="GROUP" -->
                 
             <?php }
-        } ?>
+        endwhile; ?>
         
         <!-- Fermer le document CSV. -->
         <?php fclose($file); ?>
