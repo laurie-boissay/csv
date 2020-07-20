@@ -13,7 +13,7 @@ Sur les conseils de plusieurs personnes :
 
 - Diminution de la taille du code PHP dans le code HTML ;
 
-- Suppression des guillements simples dans le PHP pour le différencier du HTML ;
+- Suppression des guillements simples dans le PHP https://ans.wiki/q/en-php-guillemets-simples-ou-guillemets-doubles/;
 
 - Donner des noms plus clairs aux valeurs des tableaux : data[0] doit devenir message['author'] (Merci à Julp du forum OC pour sa solution et son explication https://openclassrooms.com/forum/sujet/resolu-notice-trying-to-access);
 
